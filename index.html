@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.11" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README-crc</title>
+  <style>
+
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+  <style type="text/css">:root {
+--brand: #2b0a8c;
+--accent: #e6007e;
+--ink: #1f2430;
+--muted: #667085;
+--line: #e4e7ec;
+--surface: #f7f7fb;
+}
+* {
+box-sizing: border-box;
+}
+html {
+scroll-behavior: smooth;
+}
+body {
+margin: 0 auto;
+max-width: 1120px;
+padding: 50px;
+color: var(--ink);
+background: #ffffff;
+font-family: "Segoe UI", Arial, sans-serif;
+line-height: 1.65;
+}
+a {
+color: var(--brand);
+}
+a:hover {
+color: var(--accent);
+}
+h1 {
+margin-top: 2.7rem;
+padding-bottom: 0.35rem;
+border-bottom: 2px solid var(--line);
+}
+h2 {
+margin-top: 2.4rem;
+padding-bottom: 0.3rem;
+border-bottom: 1px solid var(--line);
+}
+h3,
+h4,
+h5,
+h6 {
+margin-top: 2rem;
+}
+img {
+display: block;
+max-width: 100%;
+height: auto;
+margin: 1rem auto 0.35rem;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 1.25rem 0;
+}
+th,
+td {
+border: 1px solid var(--line);
+padding: 0.7rem;
+vertical-align: top;
+}
+th {
+background: var(--surface);
+text-align: left;
+}
+blockquote {
+margin: 1.2rem 0;
+padding: 0.7rem 1rem;
+border-left: 4px solid var(--brand);
+background: var(--surface);
+}
+code {
+font-family: Consolas, "Courier New", monospace;
+}
+pre {
+overflow-x: auto;
+padding: 1rem;
+border-radius: 8px;
+background: var(--surface);
+}
+
+body > h1:first-of-type {
+margin: -50px calc(50% - 50vw) 3rem;
+padding: 3.5rem max(50px, calc((100vw - 1120px) / 2));
+border: 0;
+background: linear-gradient(135deg, #250777, #3e16a3);
+color: #ffffff;
+font-size: clamp(2rem, 5vw, 3.5rem);
+line-height: 1.1;
+}
+@media (max-width: 640px) {
+body {
+padding: 20px;
+}
+body > h1:first-of-type {
+margin-top: -20px;
+padding: 2.5rem 20px;
+}
+}
+</style>
+</head>
+<body>
+<h1 id="crc-normal-snoop-modes">CRC (Normal, Snoop modes)</h1>
+<h2 id="overview">Overview</h2>
+<p>This Software Building Block (SBB) demonstrates use of the Renesas
+CRC HAL together with a UART loopback data path. This document covers
+only:</p>
+<ul>
+<li>FPB-RA0L1</li>
+<li>FPB-RA2E3</li>
+<li>FPB-RA4E2</li>
+<li>FPB-RA6E2</li>
+<li>FPB-RA8E1</li>
+</ul>
+<p>The reference application calculates a CRC for four bytes of data,
+appends the calculated CRC to the transmitted data, transfers the data
+through a board-level UART loopback connection, validates the received
+data, and indicates the result using the terminal and on-board LED.</p>
+<p>The implementation supports two CRC verification paths. Where CRC
+snoop is available, transmission is calculated in normal mode and
+reception is validated in snoop mode. Where snoop is unavailable, both
+transmitted and received data are checked using normal CRC
+calculation.</p>
+<h2 id="use-case-demonstrated-by-this-sbb">Use case demonstrated by this
+SBB</h2>
+<p>The SBB demonstrates CRC-based data-integrity checking around a UART
+transfer:</p>
+<ol type="1">
+<li>Initialize the UART and CRC modules.</li>
+<li>Calculate a CRC for four input bytes in normal mode.</li>
+<li>Append the CRC to the input buffer.</li>
+<li>Transfer the buffer over a physical UART TX/RX loopback.</li>
+<li>Validate the received transfer using the CRC capability available on
+the target MCU.</li>
+<li>Compare the transmitted and received buffers.</li>
+<li>Indicate successful operation by blinking the on-board LED.</li>
+<li>Display status and failure information on the serial terminal.</li>
+</ol>
+<p>The supplied application starts a CRC operation when the user presses
+any key in the terminal.</p>
+<h2 id="behavior-on-the-supported-reference-boards">Behavior on the
+supported reference boards</h2>
+<p>The SBB adapts its CRC and UART path according to device
+capabilities.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Board</th>
+<th>CRC receive validation</th>
+<th>UART loopback</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FPB-RA0L1</td>
+<td>Normal mode; snoop is not supported</td>
+<td>SAU UART channel 0</td>
+</tr>
+<tr>
+<td>FPB-RA2E3</td>
+<td>Uses the implementation selected by the device
+<code>BSP_FEATURE_CRC_HAS_SNOOP</code> capability</td>
+<td>SCI UART channel 0</td>
+</tr>
+<tr>
+<td>FPB-RA4E2</td>
+<td>Normal mode; snoop is not supported</td>
+<td>SCI UART channel 9</td>
+</tr>
+<tr>
+<td>FPB-RA6E2</td>
+<td>Normal mode; snoop is not supported</td>
+<td>SCI UART channel 9</td>
+</tr>
+<tr>
+<td>FPB-RA8E1</td>
+<td>Uses the implementation selected by the device
+<code>BSP_FEATURE_CRC_HAS_SNOOP</code> capability</td>
+<td>SCI UART channel 0</td>
+</tr>
+</tbody>
+</table>
+<p>For boards where <code>BSP_FEATURE_CRC_HAS_SNOOP</code> is enabled,
+the received stream is checked using CRC snoop mode. Otherwise the
+received data has its CRC calculated in normal mode and that result is
+compared with the transmit-side CRC.</p>
+<h2 id="hardware-setup">Hardware setup</h2>
+<p>One Renesas RA board, a suitable USB cable, and one jumper wire are
+required by the supplied example documentation.</p>
+<p>Connect the board USB debug port to the host PC. Then establish the
+UART loopback required for the selected board.</p>
+<h3 id="fpb-ra0l1">FPB-RA0L1</h3>
+<ul>
+<li>Place jumper <strong>J9 on pins 1-2</strong> to use the on-board
+debug functionality.</li>
+<li>Loop back SAU UART channel 0:
+<ul>
+<li><code>SAU_UART0 TXD0 P101 (J2:11)</code> to
+<code>SAU_UART0 RXD0 P100 (J2:12)</code>.</li>
+</ul></li>
+</ul>
+<h3 id="fpb-ra2e3">FPB-RA2E3</h3>
+<ul>
+<li>Close <strong>E25, E28, E46, and E47</strong> to use J-Link OB VCOM
+for the serial terminal.</li>
+<li>Loop back SCI UART channel 0:
+<ul>
+<li><code>SCI0 TXD0 P101 (J4:11)</code> to
+<code>SCI0 RXD0 P100 (J4:12)</code>.</li>
+</ul></li>
+</ul>
+<h3 id="fpb-ra4e2">FPB-RA4E2</h3>
+<p>Loop back SCI UART channel 9:</p>
+<ul>
+<li><code>SCI9 TXD9 P109 (J4:2)</code> to
+<code>SCI9 RXD9 P110 (J4:3)</code>.</li>
+</ul>
+<h3 id="fpb-ra6e2">FPB-RA6E2</h3>
+<p>Loop back SCI UART channel 9:</p>
+<ul>
+<li><code>SCI9 TXD9 P109 (J4:2)</code> to
+<code>SCI9 RXD9 P110 (J4:3)</code>.</li>
+</ul>
+<h3 id="fpb-ra8e1">FPB-RA8E1</h3>
+<p>Loop back SCI UART channel 0:</p>
+<ul>
+<li><code>SCI0 TXD0 P609 (J3:13)</code> to
+<code>SCI0 RXD0 P610 (J3:14)</code>.</li>
+</ul>
+<h2 id="sbb-core-code">SBB core code</h2>
+<p>The reusable SBB functionality is split between the CRC and UART
+modules:</p>
+<ul>
+<li><code>crc_ep.c</code></li>
+<li><code>crc_ep.h</code></li>
+<li><code>uart_ep.c</code></li>
+<li><code>uart_ep.h</code></li>
+</ul>
+<h3 id="crc-core">CRC core</h3>
+<p>The CRC layer wraps the FSP CRC interface. It:</p>
+<ul>
+<li>Opens the configured CRC instance.</li>
+<li>Calculates a CRC using the configured polynomial and bit order.</li>
+<li>Enables CRC snoop mode when the target supports it.</li>
+<li>Retrieves the calculated snoop value when supported.</li>
+<li>Disables snoop mode when supported.</li>
+<li>Closes the CRC instance.</li>
+</ul>
+<p>Snoop-specific APIs are compiled only when
+<code>BSP_FEATURE_CRC_HAS_SNOOP</code> is enabled.</p>
+<h3 id="uart-core">UART core</h3>
+<p>The UART layer provides a common interface over the UART
+implementation selected by BSP feature macros. It wraps:</p>
+<ul>
+<li>SCI_B UART when <code>BSP_PERIPHERAL_SCI_B_PRESENT</code> is
+defined.</li>
+<li>SCI UART when <code>BSP_PERIPHERAL_SCI_PRESENT</code> is
+defined.</li>
+<li>SAU UART otherwise.</li>
+</ul>
+<p>It provides initialization, transmit, receive, cleanup, and callback
+handling. The UART callback sets completion flags when
+<code>UART_EVENT_RX_COMPLETE</code> and
+<code>UART_EVENT_TX_COMPLETE</code> occur.</p>
+<h2 id="reusable-sbb-code-versus-demoreference-application">Reusable SBB
+code versus demo/reference application</h2>
+<h3 id="reusable-sbb-code">Reusable SBB code</h3>
+<p>The reusable layer consists of:</p>
+<ul>
+<li><code>crc_ep.c</code> and <code>crc_ep.h</code> for CRC
+operations.</li>
+<li><code>uart_ep.c</code> and <code>uart_ep.h</code> for the
+data-transfer abstraction used by this SBB.</li>
+</ul>
+<p>These files isolate direct CRC and UART driver calls behind a smaller
+set of functions.</p>
+<h3 id="demoreference-application-code">Demo/reference application
+code</h3>
+<p><code>crc_example_app.c</code> and <code>crc_example_app.h</code>
+provide the reference application. They are responsible for:</p>
+<ul>
+<li>Initializing the terminal console.</li>
+<li>Displaying example and FSP information.</li>
+<li>Starting a CRC operation after terminal input.</li>
+<li>Providing the example input bytes.</li>
+<li>Appending the calculated CRC to the transmit buffer.</li>
+<li>Performing the UART loopback sequence.</li>
+<li>Comparing transmitted and received data.</li>
+<li>Applying the normal-mode or snoop-mode validation flow.</li>
+<li>Driving the LED as a demonstration result indicator.</li>
+<li>Handling errors and entering a breakpoint trap.</li>
+</ul>
+<p>The reference application’s single entry point is:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> crc_example_app_run<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span></code></pre></div>
+<p>The source identifies this function as the function called from
+<code>hal_entry.c</code>.</p>
+<h2 id="public-functions-to-look-at-first">Public functions to look at
+first</h2>
+<h3 id="crc-functions">CRC functions</h3>
+<h4 id="crc_init"><code>crc_init()</code></h4>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fsp_err_t crc_init<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span></code></pre></div>
+<p>Opens the CRC instance using <code>g_crc_ctrl</code> and
+<code>g_crc_cfg</code>.</p>
+<h4 id="crc_calculate"><code>crc_calculate()</code></h4>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fsp_err_t crc_calculate<span class="op">(</span>crc_input_t <span class="op">*</span> <span class="dt">const</span> p_crc_input<span class="op">,</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                        <span class="dt">uint32_t</span> <span class="op">*</span> crc_value<span class="op">);</span></span></code></pre></div>
+<p>Calculates a CRC through the configured FSP CRC instance. This is the
+central CRC operation in both the transmit path and the normal-mode
+receive path.</p>
+<h4 id="crc_snoop_enable"><code>crc_snoop_enable()</code></h4>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fsp_err_t crc_snoop_enable<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span></code></pre></div>
+<p>Available only when <code>BSP_FEATURE_CRC_HAS_SNOOP</code> is
+enabled. It enables CRC snoop mode using the SBB
+<code>SEED_VALUE</code>.</p>
+<h4 id="crc_calculated_value"><code>crc_calculated_value()</code></h4>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fsp_err_t crc_calculated_value<span class="op">(</span><span class="dt">uint32_t</span> <span class="op">*</span> crc_value<span class="op">);</span></span></code></pre></div>
+<p>Available only when snoop is supported. It retrieves the CRC value
+calculated during snoop operation.</p>
+<h4 id="crc_snoop_disable"><code>crc_snoop_disable()</code></h4>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fsp_err_t crc_snoop_disable<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span></code></pre></div>
+<p>Disables snoop mode on targets that support it.</p>
+<h4 id="crc_deinit"><code>crc_deinit()</code></h4>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> crc_deinit<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span></code></pre></div>
+<p>Closes the CRC instance if it is open.</p>
+<h3 id="uart-functions">UART functions</h3>
+<h4 id="uart_init"><code>uart_init()</code></h4>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fsp_err_t uart_init<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span></code></pre></div>
+<p>Opens the generated UART instance. The source comments identify the
+configured baud rate as 115200.</p>
+<h4 id="uart_write-and-uart_read"><code>uart_write()</code> and
+<code>uart_read()</code></h4>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fsp_err_t uart_write<span class="op">(</span><span class="dt">uint8_t</span> <span class="dt">const</span> <span class="op">*</span> <span class="dt">const</span> p_src<span class="op">,</span> <span class="dt">uint32_t</span> <span class="dt">const</span> bytes<span class="op">);</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>fsp_err_t uart_read<span class="op">(</span><span class="dt">uint8_t</span> <span class="op">*</span> <span class="dt">const</span> p_dest<span class="op">,</span> <span class="dt">uint32_t</span> <span class="dt">const</span> bytes<span class="op">);</span></span></code></pre></div>
+<p>Start transmission and reception through the UART implementation
+selected by the BSP abstraction macros.</p>
+<h4 id="uart_deinit"><code>uart_deinit()</code></h4>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> uart_deinit<span class="op">(</span><span class="dt">void</span><span class="op">);</span></span></code></pre></div>
+<p>Closes the generated UART instance if it is open.</p>
+<p>The UART implementation also contains <code>uart_cb()</code>, which
+records TX-complete and RX-complete callback events for the reference
+application’s loopback operation.</p>
+<h2 id="reference-configuration-assumptions">Reference configuration
+assumptions</h2>
+<p>The supplied implementation makes the following assumptions.</p>
+<h3 id="crc-configuration">CRC configuration</h3>
+<ul>
+<li>The generated CRC instance is exposed as <code>g_crc_ctrl</code> and
+<code>g_crc_cfg</code>.</li>
+<li>The application processes <strong>4 bytes</strong> of source data
+(<code>NUM_BYTES</code>).</li>
+<li>The CRC seed used by the SBB is <code>0x00000000</code>
+(<code>SEED_VALUE</code>).</li>
+<li>CRC-8 produces a five-byte UART transfer: four source bytes plus one
+CRC byte.</li>
+<li>CRC-16 and CRC-CCITT produce a six-byte UART transfer: four source
+bytes plus two CRC bytes.</li>
+<li>The application supports its CRC-8, CRC-16, and CRC-CCITT handling
+paths, but reports other selected polynomial values as unsupported.</li>
+<li>The supplied README explicitly states that the application does
+<strong>not</strong> work with the CRC-32 polynomial.</li>
+<li>For FPB-RA0L1, the README states that only
+<strong>CRC-CCITT</strong> with <strong>LSB</strong> bit order is
+supported.</li>
+</ul>
+<h3 id="uart-configuration">UART configuration</h3>
+<ul>
+<li>The generated UART instance is exposed through
+<code>g_uart_ctrl</code> and <code>g_uart_cfg</code>.</li>
+<li>The UART layer selects SCI_B, SCI, or SAU driver APIs at compile
+time using BSP peripheral feature macros.</li>
+<li>The loopback operation depends on UART transmit- and
+receive-completion callback events.</li>
+<li>The reference application uses <code>TIME_OUT = 10000000U</code> as
+a decrementing software timeout while waiting for both callbacks.</li>
+</ul>
+<h3 id="led-configuration">LED configuration</h3>
+<p>The demo uses the first BSP-defined LED:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>g_bsp_leds<span class="op">.</span>p_leds<span class="op">[</span>RESET_VALUE<span class="op">]</span></span></code></pre></div>
+<p>Successful operation calls <code>toggle_led()</code>. Error handling
+sets the LED to <code>LED_ON</code> before deinitializing the CRC and
+UART modules and entering a breakpoint.</p>
+<h2 id="what-must-change-when-adapting-the-sbb">What must change when
+adapting the SBB?</h2>
+<h3 id="uart-peripheral-and-pins">UART peripheral and pins</h3>
+<p>The physical loopback is board-specific. If moving away from the
+supplied reference board configuration, the UART peripheral instance,
+channel, TX/RX pins, generated pin configuration, and physical signal
+routing need to match the new target hardware.</p>
+<p>The supplied <code>uart_ep.h</code> already abstracts the driver
+family between SCI_B UART, SCI UART, and SAU UART through BSP feature
+macros, but it still expects compatible generated
+<code>g_uart_ctrl</code> and <code>g_uart_cfg</code> objects.</p>
+<h3 id="crc-polynomial-and-bit-order">CRC polynomial and bit order</h3>
+<p>The application uses <code>g_crc_cfg.polynomial</code> and
+<code>g_crc_cfg.bit_order</code> to determine how the CRC is handled. If
+these settings are changed in the CRC configurator, the selected
+configuration must remain compatible with the application’s supported
+paths.</p>
+<p>The README states that FPB-RA0L1 supports CRC-CCITT and LSB for this
+example, and that CRC-32 is unsupported by the application.</p>
+<h3 id="crc-snoop-capability">CRC snoop capability</h3>
+<p>Do not assume snoop mode is available on every target. The source
+gates all snoop APIs and the snoop-based receive path with:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>BSP_FEATURE_CRC_HAS_SNOOP</span></code></pre></div>
+<p>FPB-RA0L1, FPB-RA4E2, and FPB-RA6E2 are explicitly identified by the
+supplied README as boards that operate without CRC snoop for this
+example.</p>
+<h3 id="clocks-and-baud-rate">Clocks and baud rate</h3>
+<p>The UART source states that <code>uart_init()</code> opens a channel
+configured for 115200 baud, and the README specifies a 115200-baud
+terminal. The supplied files do not state the underlying peripheral
+clock settings needed to derive that baud rate on each reference board.
+Those settings must therefore be checked in the generated board/FSP
+configuration if clocks are changed.</p>
+<h3 id="timing">Timing</h3>
+<p>The application waits for UART TX and RX completion flags using a
+decrementing <code>TIME_OUT</code> loop and uses
+<code>R_BSP_SoftwareDelay()</code> with <code>TOGGLE_DELAY</code> when
+blinking the LED. These are implementation constants rather than
+measured timing guarantees.</p>
+<h3 id="memory-and-task-priorities">Memory and task priorities</h3>
+<p>The supplied files do not define an RTOS, task priorities, stack
+sizes, heap requirements, or overall SBB memory consumption. These
+requirements must be established by the integrating application if it
+introduces an RTOS or different execution model.</p>
+<h3 id="middleware-and-console">Middleware and console</h3>
+<p>The demonstration’s terminal interface depends on
+<code>console/uart_console.h</code> and standard I/O. This terminal
+interaction belongs to the reference application. An integration that
+uses the CRC/UART SBB functions without the interactive demo can provide
+its own application interface.</p>
+<h2 id="dependencies">Dependencies</h2>
+<h3 id="fsp-crc-hal">FSP CRC HAL</h3>
+<p>The CRC layer calls:</p>
+<ul>
+<li><code>R_CRC_Open()</code></li>
+<li><code>R_CRC_Calculate()</code></li>
+<li><code>R_CRC_SnoopEnable()</code> when supported</li>
+<li><code>R_CRC_CalculatedValueGet()</code> when supported</li>
+<li><code>R_CRC_SnoopDisable()</code> when supported</li>
+<li><code>R_CRC_Close()</code></li>
+</ul>
+<h3 id="fsp-uart-driver">FSP UART driver</h3>
+<p>Depending on BSP peripheral capabilities, the UART abstraction maps
+onto one of:</p>
+<ul>
+<li><code>R_SCI_B_UART_*</code></li>
+<li><code>R_SCI_UART_*</code></li>
+<li><code>R_SAU_UART_*</code></li>
+</ul>
+<h3 id="fspbsp-services">FSP/BSP services</h3>
+<p>The application also uses:</p>
+<ul>
+<li><code>R_FSP_VersionGet()</code></li>
+<li><code>R_IOPORT_PinWrite()</code></li>
+<li><code>R_BSP_SoftwareDelay()</code></li>
+<li>Generated definitions exposed through <code>hal_data.h</code></li>
+<li>BSP LED information through <code>g_bsp_leds</code></li>
+</ul>
+<h3 id="console-and-c-runtime">Console and C runtime</h3>
+<p>The reference application uses:</p>
+<ul>
+<li><code>console/uart_console.h</code></li>
+<li><code>uart_console_init()</code></li>
+<li><code>uart_console_has_char()</code></li>
+<li><code>uart_console_flush()</code></li>
+<li>Standard C functionality including <code>printf()</code>,
+<code>getchar()</code>, and <code>memcmp()</code></li>
+</ul>
+<h3 id="hardware-resources">Hardware resources</h3>
+<p>The reference implementation requires:</p>
+<ul>
+<li>CRC peripheral</li>
+<li>A supported UART peripheral and channel</li>
+<li>TX and RX pins connected as a loopback</li>
+<li>An on-board BSP-supported LED for result indication</li>
+<li>USB/debug connection</li>
+<li>A serial terminal for the interactive reference application</li>
+</ul>
+<h2 id="serial-terminal-configuration">Serial terminal
+configuration</h2>
+<p>The supplied README specifies:</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Port</td>
+<td>J-Link On-Board port</td>
+</tr>
+<tr>
+<td>Speed</td>
+<td>115200</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>8 bit</td>
+</tr>
+<tr>
+<td>Parity</td>
+<td>None</td>
+</tr>
+<tr>
+<td>Stop bits</td>
+<td>1 bit</td>
+</tr>
+<tr>
+<td>Flow control</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<p>For Tera Term, the README also specifies:</p>
+<ul>
+<li>Receive newline: <strong>CR</strong></li>
+<li>Transmit newline: <strong>CR</strong></li>
+<li><strong>Local echo</strong> enabled</li>
+</ul>
+<h2 id="demonstrated-behavior-and-performance">Demonstrated behavior and
+performance</h2>
+<h3 id="crc-data-path">CRC data path</h3>
+<p>The demonstration starts with these four input bytes:</p>
+<pre class="text"><code>05 02 03 04</code></pre>
+<p>A CRC is calculated for those four bytes and appended to the transfer
+buffer. The total UART transfer is five bytes for CRC-8 or six bytes for
+CRC-16/CRC-CCITT.</p>
+<h3 id="verification-with-snoop-support">Verification with snoop
+support</h3>
+<p>When <code>BSP_FEATURE_CRC_HAS_SNOOP</code> is enabled:</p>
+<ol type="1">
+<li>The transmit-side CRC is calculated in normal mode.</li>
+<li>CRC snoop mode is enabled.</li>
+<li>The buffer is transmitted and received through UART loopback.</li>
+<li>The snoop CRC value is retrieved.</li>
+<li>Snoop mode is disabled.</li>
+<li>The operation is considered successful by the application when the
+snoop CRC value is zero and the transmitted and received buffers
+match.</li>
+</ol>
+<h3 id="verification-without-snoop-support">Verification without snoop
+support</h3>
+<p>When snoop is not available:</p>
+<ol type="1">
+<li>The transmit-side CRC is calculated in normal mode.</li>
+<li>The buffer is transmitted and received through UART loopback.</li>
+<li>A CRC is calculated for the received data in normal mode.</li>
+<li>The application checks the transmit and receive CRC values and
+compares the transmitted and received buffers.</li>
+</ol>
+<h3 id="result-indication">Result indication</h3>
+<p>When the validation succeeds and the buffers match, the application
+prints a success message and blinks the on-board LED. Error handling
+prints an error, turns the LED on, deinitializes the CRC and UART
+modules, and enters a breakpoint.</p>
+<h3 id="performance-measurements">Performance measurements</h3>
+<p>The supplied source and README do <strong>not</strong> provide
+measured CRC throughput, UART throughput, CPU utilization, memory
+footprint, interrupt latency, execution time, or other benchmark
+results. <code>TIME_OUT</code> and <code>TOGGLE_DELAY</code> are
+implementation constants and should not be interpreted as performance
+measurements.</p>
+<p>This SBB should therefore be treated as a functional CRC/UART
+integration reference rather than a performance benchmark.</p>
+<h2 id="file-ownership-and-modification-guidance">File ownership and
+modification guidance</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>File</th>
+<th>Classification</th>
+<th>Guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>crc_ep.c</code></td>
+<td>Reusable SBB CRC implementation</td>
+<td>Modify when intentionally changing the reusable CRC wrapper or
+supported CRC behavior.</td>
+</tr>
+<tr>
+<td><code>crc_ep.h</code></td>
+<td>Reusable SBB CRC interface</td>
+<td>Modify when changing CRC-facing declarations or integration
+constants.</td>
+</tr>
+<tr>
+<td><code>uart_ep.c</code></td>
+<td>Reusable SBB UART implementation</td>
+<td>Modify when changing the UART wrapper or callback behavior required
+by the SBB.</td>
+</tr>
+<tr>
+<td><code>uart_ep.h</code></td>
+<td>Reusable SBB UART interface/driver abstraction</td>
+<td>Modify carefully when changing the SCI_B/SCI/SAU abstraction or
+UART-facing interface.</td>
+</tr>
+<tr>
+<td><code>crc_example_app.c</code></td>
+<td>Demo/reference application</td>
+<td>Appropriate location for changes to demonstration sequencing, sample
+data, result presentation, or terminal-driven behavior.</td>
+</tr>
+<tr>
+<td><code>crc_example_app.h</code></td>
+<td>Demo/reference application interface</td>
+<td>Contains the reference-app entry point and display strings.</td>
+</tr>
+<tr>
+<td><code>readme.txt</code></td>
+<td>Existing example documentation</td>
+<td>Provides the reference hardware, loopback, CRC restriction, and
+terminal setup information used by this document.</td>
+</tr>
+</tbody>
+</table>
+<p>The source includes <code>hal_data.h</code> and depends on generated
+FSP objects such as <code>g_crc_cfg</code>, <code>g_crc_ctrl</code>,
+<code>g_uart_cfg</code>, and <code>g_uart_ctrl</code>. The supplied file
+set does not enumerate the associated generated files, so this document
+does not classify individual generated project files beyond those
+explicitly provided.</p>
+<h2 id="adopting-a-newer-sbb-release-after-local-modifications">Adopting
+a newer SBB release after local modifications</h2>
+<p>Changing <code>crc_ep.*</code> or <code>uart_ep.*</code> creates
+local differences in the reusable SBB layer. A later SBB release may
+change the same interfaces or implementation, requiring those local
+changes to be reconciled.</p>
+<p>To reduce upgrade conflicts:</p>
+<ul>
+<li>Keep demonstration-specific behavior in
+<code>crc_example_app.*</code> where possible.</li>
+<li>Keep product-specific presentation, input handling, and test data
+out of the reusable CRC/UART wrappers unless they are genuinely part of
+the required SBB behavior.</li>
+<li>Keep changes to <code>crc_ep.*</code> and <code>uart_ep.*</code>
+focused and track why each change is required.</li>
+<li>Keep generated FSP configuration distinct from hand-maintained
+source changes.</li>
+<li>When adopting a newer SBB release, compare the reusable files with
+the locally modified versions and reapply only customizations that
+remain necessary.</li>
+<li>Revalidate the selected CRC polynomial and bit order, snoop
+capability, UART driver mapping, TX/RX configuration, callback
+completion behavior, physical loopback, and result checks after
+integration.</li>
+</ul>
+<p>The supplied files do not define an automated source-migration or
+compatibility mechanism for future SBB versions, so compatibility after
+an upgrade must be validated by the integrating project.</p>
+<h2 id="recommended-reading-order">Recommended reading order</h2>
+<ol type="1">
+<li><strong><code>crc_ep.h</code></strong> to understand CRC constants
+and the reusable CRC API.</li>
+<li><strong><code>crc_ep.c</code></strong> to see how the CRC FSP driver
+is wrapped, including conditional snoop support.</li>
+<li><strong><code>uart_ep.h</code></strong> to understand the
+SCI_B/SCI/SAU compile-time UART abstraction.</li>
+<li><strong><code>uart_ep.c</code></strong> to see UART initialization,
+transfers, and callback completion flags.</li>
+<li><strong><code>crc_example_app.c</code></strong> to see the complete
+CRC calculation, UART loopback, validation, LED, and error-handling
+sequence.</li>
+<li><strong><code>crc_example_app.h</code></strong> to see the reference
+application entry point and generated presentation strings.</li>
+<li><strong><code>readme.txt</code></strong> for the original
+board-specific hardware connections and terminal setup.</li>
+</ol>
+</body>
+</html>
